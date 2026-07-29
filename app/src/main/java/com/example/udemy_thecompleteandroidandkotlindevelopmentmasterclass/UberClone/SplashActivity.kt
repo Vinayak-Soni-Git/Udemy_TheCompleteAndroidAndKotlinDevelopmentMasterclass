@@ -1,4 +1,4 @@
-package com.example.udemy_thecompleteandroidandkotlindevelopmentmasterclass.uberclone
+package com.example.udemy_thecompleteandroidandkotlindevelopmentmasterclass.UberClone
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
