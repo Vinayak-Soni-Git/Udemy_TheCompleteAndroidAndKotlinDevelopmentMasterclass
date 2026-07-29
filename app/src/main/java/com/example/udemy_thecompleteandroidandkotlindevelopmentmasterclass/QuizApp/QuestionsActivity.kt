@@ -1,5 +1,6 @@
 package com.example.udemy_thecompleteandroidandkotlindevelopmentmasterclass.QuizApp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -27,10 +28,16 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var tvOptionThree: TextView
     private lateinit var tvOptionFour: TextView
 
-    private val currentPosition = 1
+    private var currentPosition = 1
     private lateinit var questionsList: MutableList<Question>
     private lateinit var checkButton: Button
     private var selectedOptionPosition = 0
+    private var selectedAnswer = 0
+    private lateinit var currentQuestion: Question
+    private var answered = false
+    private var score = 0
+
+    private lateinit var name: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +70,15 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         questionsList = Constants.getQuestions()
 
-        setQuestion()
+        showNextQuestion()
+
+        if (intent.hasExtra(Constants.USER_NAME)) {
+            name = intent.getStringExtra(Constants.USER_NAME)!!
+        }
 
     }
 
-    private fun setQuestion() {
+    private fun showNextQuestion() {
         val question = questionsList[currentPosition - 1]
         ivFlag.setImageResource(question.image)
         progressBar.progress = currentPosition
@@ -79,11 +90,20 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tvOptionThree.text = question.optionThree
         tvOptionFour.text = question.optionFour
 
-        if (currentPosition == questionsList.size) {
-            checkButton.text = "Finish"
-        } else {
+        if (currentPosition < questionsList.size) {
             checkButton.text = "Check Answer"
+            currentQuestion = questionsList[currentPosition]
+        } else {
+            checkButton.text = "Finish"
+            Intent(this@QuestionsActivity, ResultActivity::class.java).also {
+                it.putExtra(Constants.USER_NAME, name)
+                it.putExtra(Constants.SCORE, score)
+                it.putExtra(Constants.TOTAL_QUESTIONS, questionsList.size)
+                startActivity(it)
+            }
         }
+        currentPosition++
+        answered = false
     }
 
     private fun resetOptions() {
@@ -97,7 +117,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             option.setTextColor(Color.parseColor("#7A8089"))
             option.typeface = Typeface.DEFAULT
             option.background = ContextCompat.getDrawable(this, R.drawable.quiz_default_option_bg)
-
         }
     }
 
@@ -108,8 +127,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
         textView.setTypeface(textView.typeface, Typeface.BOLD)
         textView.background =
             ContextCompat.getDrawable(this, R.drawable.quiz_selected_option_border_bg)
-
-
     }
 
     override fun onClick(view: View?) {
@@ -131,7 +148,73 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_check -> {
+                if (!answered) {
+                    checkAnswer()
+                } else {
+                    showNextQuestion()
+                }
+                selectedAnswer = 0
+            }
+        }
+    }
 
+    private fun checkAnswer() {
+        answered = true
+        if (selectedAnswer == currentQuestion.correctAnswer) {
+            highLightAnswer(selectedAnswer)
+            score++
+        } else {
+            when (selectedAnswer) {
+                1 -> {
+                    tvOptionOne.background =
+                        ContextCompat.getDrawable(this, R.drawable.quiz_wrong_option_border_bg)
+                }
+
+                2 -> {
+                    tvOptionTwo.background =
+                        ContextCompat.getDrawable(this, R.drawable.quiz_wrong_option_border_bg)
+                }
+
+                3 -> {
+                    tvOptionThree.background =
+                        ContextCompat.getDrawable(this, R.drawable.quiz_wrong_option_border_bg)
+                }
+
+                4 -> {
+                    tvOptionFour.background =
+                        ContextCompat.getDrawable(this, R.drawable.quiz_wrong_option_border_bg)
+                }
+            }
+        }
+        checkButton.text = "Next Question"
+        showSolution()
+    }
+
+    private fun showSolution() {
+        selectedAnswer = currentQuestion.correctAnswer
+        highLightAnswer(selectedAnswer)
+    }
+
+    private fun highLightAnswer(answer: Int) {
+        when (answer) {
+            1 -> {
+                tvOptionOne.background =
+                    ContextCompat.getDrawable(this, R.drawable.quiz_correct_option_border_bg)
+            }
+
+            2 -> {
+                tvOptionTwo.background =
+                    ContextCompat.getDrawable(this, R.drawable.quiz_correct_option_border_bg)
+            }
+
+            3 -> {
+                tvOptionThree.background =
+                    ContextCompat.getDrawable(this, R.drawable.quiz_correct_option_border_bg)
+            }
+
+            4 -> {
+                tvOptionFour.background =
+                    ContextCompat.getDrawable(this, R.drawable.quiz_correct_option_border_bg)
             }
         }
     }
