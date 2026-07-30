@@ -58,6 +58,10 @@
             android:name=".Firestore.MainFirestoreActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".NavigationComponent.MainNavigationActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

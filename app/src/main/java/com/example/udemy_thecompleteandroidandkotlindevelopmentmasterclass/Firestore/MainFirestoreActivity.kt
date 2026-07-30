@@ -76,7 +76,7 @@ class MainFirestoreActivity : AppCompatActivity() {
         val title = etTitle.text.toString()
         val description = etDescription.text.toString()
 
-        val note = Note(title, description)
+        val note = Note(title, description, 0)
 
         textViewData.text = "Title: $title, Description: $description"
 
