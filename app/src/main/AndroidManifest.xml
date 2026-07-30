@@ -62,6 +62,18 @@
             android:name=".NavigationComponent.MainNavigationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MVVMDatabaseAndNoteApp.MainNoteAppActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MVVMDatabaseAndNoteApp.AddEditNoteActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".WeatherApp.MainWeatherActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

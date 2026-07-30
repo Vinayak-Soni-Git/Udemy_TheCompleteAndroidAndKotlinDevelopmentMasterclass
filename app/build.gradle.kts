@@ -50,6 +50,11 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation("io.reactivex.rxjava3:rxjava:3.1.12")
 
+    implementation("androidx.room:room-runtime:2.8.4")
+    annotationProcessor("androidx.room:room-compiler:2.8.4")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0")
+
     implementation("com.github.yukuku:ambilwarna:2.0.1")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.9.8")
