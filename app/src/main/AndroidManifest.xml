@@ -50,6 +50,14 @@
             android:name=".DrawingApp.MainDrawingActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".NavigationDrawerAndFragments.MainNavigationDrawerFragmentActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Firestore.MainFirestoreActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
