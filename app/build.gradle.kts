@@ -63,6 +63,13 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:25.1.4")
     implementation("com.google.firebase:firebase-database-ktx:21.0.0")
     implementation("com.google.firebase:firebase-storage-ktx:21.0.2")
+    implementation("com.firebaseui:firebase-ui-auth:9.1.1")
+
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.firebase:firebase-storage:20.2.1")
+    implementation("com.google.firebase:firebase-messaging:23.1.2")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.1.2")
 
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation("io.reactivex.rxjava3:rxjava:3.1.12")
@@ -84,9 +91,14 @@ dependencies {
     implementation("com.google.code.gson:gson:2.14.0")
     implementation("com.google.android.gms:play-services-location:21.4.0")
 
+    implementation("com.firebase:geofire-android:3.2.0")
+    implementation("com.firebase:geofire-android-common:3.2.0")
+
+    implementation("com.karumi:dexter:6.2.3")
+
     implementation("com.mikhaellopez:circularimageview:4.3.1")
     implementation("com.squareup.picasso:picasso:2.71828")
-
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
 
     testImplementation(libs.junit)

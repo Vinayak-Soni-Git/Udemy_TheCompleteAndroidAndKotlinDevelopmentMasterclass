@@ -10,6 +10,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -92,6 +97,10 @@
             android:exported="false"
             android:label="@string/title_activity_main_compose"
             android:theme="@style/Theme.Udemy_TheCompleteAndroidAndKotlinDevelopmentMasterclass"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".UberClone.MainUberActivity"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
 
